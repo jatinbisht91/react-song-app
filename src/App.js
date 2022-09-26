@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
 
+import Sidebar from './Components/Sidebar';
+import Home from './Pages/Home';
+import Favourite from './Pages/Favourite';
+
+import Search from './Pages/Search';
+import Playlist from './Components/Playlist';
+import { SongContext } from './Context/SongContext';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className='container-fluid row'>
+      <SongContext>
+        <Router>
+
+          <Sidebar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/fav" element={<Favourite />} />
+
+            <Route path="/search" element={<Search />} />
+            <Route path="/playlist/:id" element={<Playlist />} />
+
+          </Routes>
+
+
+
+        </Router>
+      </SongContext>
+
+
+
     </div>
+
   );
 }
 
